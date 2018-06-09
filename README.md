@@ -12,6 +12,20 @@ If valid: send GET request to http://api.com/callback/usr=%username%&
 
 
 ## Setup (How-to):
+* Import the project as Maven project
+* * https://www.jetbrains.com/help/idea/13.0/importing-project-from-maven-model.pdf
+* * https://books.sonatype.com/m2eclipse-book/reference/creating-sect-importing-projects.html
+* * (Credits to the authors of the guides)
+
+
+* Download and install PostgreSQL (https://www.postgresql.org/download/)
+* Download and install pgadmin 4 (https://www.pgadmin.org/download/)
+* * Write down the data you've been given for accessing the database
+* * Open pgAdmin
+* * Connect to database server
+* * Edit => New Object => New database
+* * done
+
 
 * SQL-Script to create the container holding the user data:
 ```
