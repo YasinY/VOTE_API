@@ -1,3 +1,5 @@
+
+
 # VOTE_API
 Used for learning purposes and my RuneScape 2012 private server (ran educationally).
 
@@ -26,6 +28,8 @@ RSPS-list
 
 From what's been experienced, the username is always the first one written out as query parameter, so therefore the servlet reads out the content after = (and optionally up to &). 
 
+## !This is only the server!
+An API-Client is currently in the making.
 
 ## Setup (How-to):
 * Import the project as Maven project
@@ -58,7 +62,7 @@ create table if not exists votes(
 
 Now everything should be set up regarding PostgreSQL.
 
-Now, if you don't know how to host your Spring application, I recommend you [This service](https://www.callicoder.com/deploy-host-spring-boot-apps-on-heroku/)
+Now, if you don't know how to host your Spring application, I recommend you [This service](https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku)
 
 TODO:
 Remove the ids from the toplist and leave it only to their links
