@@ -58,5 +58,7 @@ create table if not exists votes(
 
 Now everything should be set up regarding PostgreSQL.
 
+Now, if you don't know how to host your Spring application, I recommend you [This service](https://www.callicoder.com/deploy-host-spring-boot-apps-on-heroku/)
+
 TODO:
 Remove the ids from the toplist and leave it only to their links
