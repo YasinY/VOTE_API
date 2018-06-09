@@ -11,10 +11,10 @@ If valid: send GET request to http://api.com/callback/usr=%username%&
 
 
 
-##Setup:
-
+## Setup (How-to):
 
 *SQL-Script to create the container holding the user data:
+
 `create table if not exists votes
 (
 	vote_count smallserial,
