@@ -4,11 +4,23 @@ Used for learning purposes and my RuneScape 2012 private server (ran educational
 What's this about? This is a voting API used for handling vote/update requests. It works with callbacks from an user-defined list.
 
 Example procedure:
-User visits https://www.runelocus.com/top-rsps-list/details-45263-aeronps/ and votes
+User visits https://www.runelocus.com/top-rsps-list/details-45263-aeronps/ and *attempts* to vote
+
 Runelocus now has the task to identify if the vote is valid or not
 
-If valid: send GET request to http://api.com/callback/usr=%username%&
+If valid: Initialize Callback to http://api.com/callback/usr=%username%
 
+
+*Supported toplists:
+RuneLocus
+Rune-Server
+TopG
+RSPSToplist
+Top100Arena
+TopRSPS
+RSPS-list
+
+From what's been experienced, the username is always the first one written out as query parameter, so therefore the servlet reads out the content after = (and optionally up to &). 
 
 
 ## Setup (How-to):
@@ -24,10 +36,10 @@ If valid: send GET request to http://api.com/callback/usr=%username%&
 * * Open pgAdmin
 * * Connect to database server
 * * Edit => New Object => New database
-* * done
 
 
-### SQL-Script to create the container holding the user data:
+
+### Execute following PostgreSQL-Script to create the container holding the user data:
 ```
 create table if not exists votes(
 	vote_count smallserial,
@@ -37,7 +49,7 @@ create table if not exists votes(
 );
 ```
 
-### SQL-Functions essential to make the RESTful-API work
+### PostgreSQL-Functions essential to make the RESTful-API work
 ```
 CREATE OR REPLACE FUNCTION get_user(playerName text, create_account boolean default false)
   RETURNS json AS
