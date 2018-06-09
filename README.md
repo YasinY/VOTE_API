@@ -60,7 +60,9 @@ BEGIN
 END;
 $$
 LANGUAGE plpgsql;
+```
 
+```
 CREATE OR REPLACE FUNCTION update(row0 smallint, row1 text, row2 integer, row3 bigint) RETURNS void as $$ --user update on callback here
 
 BEGIN
@@ -84,8 +86,9 @@ BEGIN
 END;
 $$
 LANGUAGE plpgsql;
+```
 
-
+```
 CREATE OR REPLACE FUNCTION create_user(row0 smallint, row1 text, row2 integer, row3 bigint) --really only just for get_user
   RETURNS void AS
 $$
