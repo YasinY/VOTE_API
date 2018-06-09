@@ -10,6 +10,10 @@ Runelocus now has the task to identify if the vote is valid or not
 
 If valid: Initialize Callback to http://api.com/callback/usr=%username%
 
+http://api.com/callback/ reads the username and rewards the user correspondingly
+
+Known security exploits:
+* None
 
 *Supported toplists:
 RuneLocus
@@ -49,5 +53,10 @@ create table if not exists votes(
 );
 ```
 
-### PostgreSQL-Functions essential to make the RESTful-API work
+### Let your server intrepretate/save following PostgreSQL-Functions to make the RESTful-API work
 [PostgreSQL functions](sql/functions.sql)
+
+Now everything should be set up regarding PostgreSQL.
+
+TODO:
+Remove the ids from the toplist and leave it only to their links
