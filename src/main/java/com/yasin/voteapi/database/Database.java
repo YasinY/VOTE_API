@@ -2,6 +2,7 @@ package com.yasin.voteapi.database;
 
 
 import com.google.gson.Gson;
+import com.yasin.voteapi.Config;
 import com.yasin.voteapi.datasets.user.User;
 import com.yasin.voteapi.status.Status;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class Database {
 
     private SingleConnectionDataSource initializeConnection() {
         try {
-            return new SingleConnectionDataSource(DriverManager.getConnection("jdbc:postgresql://localhost:5432/votes", "postgres", "test"), true);
+            return new SingleConnectionDataSource(DriverManager.getConnection(Config.DATABASE_URL, Config.DATABASE_USERNAME, Config.DATABASE_PASSWORD), true);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -43,9 +44,10 @@ public class Database {
     }
 
 
-    public void updateUser(int voteCount, String username, int pendingPoints, long lastVote, int votesToday) {
+    public void updateUser(int voteCount, String username, int pendingPoints, long lastVote) {
         if (getUser(username).hasBody()) {
-            queryOnDemand().execute("SELECT update(" + voteCount + "::smallint, '" + username + "'::text, " + pendingPoints + ", " + lastVote + "::bigint, " + votesToday + ")");
+            queryOnDemand().execute(
+                    "SELECT update(" + voteCount + "::smallint, '" + username + "'::text, " + pendingPoints + "::integer, " + lastVote + "::bigint)");
         }
     }
 

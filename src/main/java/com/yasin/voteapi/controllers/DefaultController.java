@@ -19,6 +19,15 @@ public class DefaultController {
         return ToplistHandler.getInstance().getToplists().stream().anyMatch(toplist -> toplist.getName().contains(host));
     }
 
+    private String getUsername(String link) {
+        int equalOperator = link.indexOf("=");
+        int andOperator = link.indexOf('&');
+        if (andOperator != -1) {
+            return link.substring(equalOperator + 1, andOperator);
+        }
+        return link.substring(equalOperator + 1, link.length());
+    }
+
     @RequestMapping(value = "/callback/{link}", method = RequestMethod.GET) //regex is diff in java..
     public void callback(@RequestHeader String host, @PathVariable("link") String link) {
         if (validHost(host)) {
@@ -26,7 +35,7 @@ public class DefaultController {
             if (host.contains("runelocus")) {
                 reward = 10;
             }
-            update(link.substring(link.indexOf('=') + 1, link.indexOf('&')), reward);
+            update(getUsername(link), reward);
         }
     }
 
@@ -43,7 +52,7 @@ public class DefaultController {
             User voter = (User) request.getBody();
             if (voter.getVotesToday() < ToplistHandler.getInstance().getToplists().size()) {
                 Database.getInstance().updateUser(voter.getVoteCount() + 1, voter.getName(),
-                        voter.getPendingPoints() + points, voter.getLastVote(), voter.getVotesToday() + 1);
+                        voter.getPendingPoints() + points, voter.getLastVote());
             }
         }
     }
